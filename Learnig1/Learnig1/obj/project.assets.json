@@ -148,11 +148,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Stefan.saraev\\source\\repos\\Learnig1\\Learnig1\\Learnig1.csproj",
-      "projectName": "Learnig1",
-      "projectPath": "C:\\Users\\Stefan.saraev\\source\\repos\\Learnig1\\Learnig1\\Learnig1.csproj",
+      "projectUniqueName": "C:\\Users\\Stefan.saraev\\source\\repos\\Demo_RabbitMQ_SQLServer\\Learnig1\\Learnig1\\ConsoleClient.csproj",
+      "projectName": "ConsoleClient",
+      "projectPath": "C:\\Users\\Stefan.saraev\\source\\repos\\Demo_RabbitMQ_SQLServer\\Learnig1\\Learnig1\\ConsoleClient.csproj",
       "packagesPath": "C:\\Users\\Stefan.saraev\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Stefan.saraev\\source\\repos\\Learnig1\\Learnig1\\obj\\",
+      "outputPath": "C:\\Users\\Stefan.saraev\\source\\repos\\Demo_RabbitMQ_SQLServer\\Learnig1\\Learnig1\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\Stefan.saraev\\AppData\\Roaming\\NuGet\\NuGet.Config",
