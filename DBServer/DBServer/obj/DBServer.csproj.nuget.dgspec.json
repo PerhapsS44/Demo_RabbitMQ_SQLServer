@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Stefan.saraev\\source\\repos\\DBServer\\DBServer\\DBServer.csproj": {}
+    "C:\\Users\\Stefan.saraev\\source\\repos\\Demo_RabbitMQ_SQLServer\\DBServer\\DBServer\\DBServer.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Stefan.saraev\\source\\repos\\DBServer\\DBServer\\DBServer.csproj": {
+    "C:\\Users\\Stefan.saraev\\source\\repos\\Demo_RabbitMQ_SQLServer\\DBServer\\DBServer\\DBServer.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Stefan.saraev\\source\\repos\\DBServer\\DBServer\\DBServer.csproj",
+        "projectUniqueName": "C:\\Users\\Stefan.saraev\\source\\repos\\Demo_RabbitMQ_SQLServer\\DBServer\\DBServer\\DBServer.csproj",
         "projectName": "DBServer",
-        "projectPath": "C:\\Users\\Stefan.saraev\\source\\repos\\DBServer\\DBServer\\DBServer.csproj",
+        "projectPath": "C:\\Users\\Stefan.saraev\\source\\repos\\Demo_RabbitMQ_SQLServer\\DBServer\\DBServer\\DBServer.csproj",
         "packagesPath": "C:\\Users\\Stefan.saraev\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Stefan.saraev\\source\\repos\\DBServer\\DBServer\\obj\\",
+        "outputPath": "C:\\Users\\Stefan.saraev\\source\\repos\\Demo_RabbitMQ_SQLServer\\DBServer\\DBServer\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Stefan.saraev\\AppData\\Roaming\\NuGet\\NuGet.Config",

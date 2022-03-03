@@ -10,15 +10,15 @@ namespace DBServer
 
     public class DBConnectionHandler
     {
-        SqlConnection cnn;
+        SqlConnection connection;
         string connetionString = "Data Source=(LocalDB)\\MSSQLLocalDB;Initial Catalog=Demo;Trusted_Connection=True;";
         bool connected = false;
         public void DBConnect()
         {
-            cnn = new SqlConnection(connetionString);
+            connection = new SqlConnection(connetionString);
             try
             {
-                cnn.Open();
+                connection.Open();
                 connected = true;
             }
             catch (Exception ex)
@@ -33,7 +33,7 @@ namespace DBServer
             {
                 try
                 {
-                    cnn.Close();
+                    connection.Close();
                     connected = false;
                 }
                 catch (Exception ex)
@@ -43,52 +43,52 @@ namespace DBServer
             }
         }
 
-        public void AddSomething(Message msg)
+        public void AddSomething(Message message)
         {
             try
             {
                 string query = "INSERT INTO DemoTable(ProductName, ProductQuantity) VALUES(@ProductName, @ProductQuantity)";
 
-                var cmd = new SqlCommand(query, cnn);
+                var sqlCommand = new SqlCommand(query, connection);
 
-                cmd.Parameters.Add(new SqlParameter("@ProductName", SqlDbType.VarChar, 255)).Value = msg.productName;
-                cmd.Parameters.Add("@ProductQuantity", SqlDbType.Int).Value = msg.quantity;
-                cmd.Prepare();
+                sqlCommand.Parameters.Add(new SqlParameter("@ProductName", SqlDbType.VarChar, 255)).Value = message.productName;
+                sqlCommand.Parameters.Add("@ProductQuantity", SqlDbType.Int).Value = message.quantity;
+                sqlCommand.Prepare();
 
-                cmd.ExecuteNonQuery();
+                sqlCommand.ExecuteNonQuery();
             }
             catch (Exception ex) { Console.WriteLine(ex.Message); }
         }
 
-        public void ModifySomething(Message msg)
+        public void ModifySomething(Message message)
         {
             try
             {
                 string query = "UPDATE DemoTable SET ProductQuantity=@ProductQuantity WHERE ProductName=@ProductName";
 
-                var cmd = new SqlCommand(query, cnn);
+                var sqlCommand = new SqlCommand(query, connection);
 
-                cmd.Parameters.Add(new SqlParameter("@ProductName", SqlDbType.VarChar, 255)).Value = msg.productName;
-                cmd.Parameters.Add("@ProductQuantity", SqlDbType.Int).Value = msg.quantity;
-                cmd.Prepare();
+                sqlCommand.Parameters.Add(new SqlParameter("@ProductName", SqlDbType.VarChar, 255)).Value = message.productName;
+                sqlCommand.Parameters.Add("@ProductQuantity", SqlDbType.Int).Value = message.quantity;
+                sqlCommand.Prepare();
 
-                cmd.ExecuteNonQuery();
+                sqlCommand.ExecuteNonQuery();
             }
             catch (Exception ex) { Console.WriteLine(ex.Message); }
         }
 
-        public void RemoveSomething(Message msg)
+        public void RemoveSomething(Message message)
         {
             try
             {
                 string query = "DELETE FROM DemoTable WHERE ProductName=@ProductName";
 
-                var cmd = new SqlCommand(query, cnn);
+                var sqlCommand = new SqlCommand(query, connection);
 
-                cmd.Parameters.Add(new SqlParameter("@ProductName", SqlDbType.VarChar, 255)).Value = msg.productName;
-                cmd.Prepare();
+                sqlCommand.Parameters.Add(new SqlParameter("@ProductName", SqlDbType.VarChar, 255)).Value = message.productName;
+                sqlCommand.Prepare();
 
-                cmd.ExecuteNonQuery();
+                sqlCommand.ExecuteNonQuery();
             }
             catch (Exception ex) { Console.WriteLine(ex.Message); }
         }
@@ -101,11 +101,11 @@ namespace DBServer
             {
                 string query = "SELECT TOP 100 * FROM DemoTable";
 
-                var cmd = new SqlCommand(query, cnn);
+                var sqlCommand = new SqlCommand(query, connection);
 
-                cmd.Prepare();
+                sqlCommand.Prepare();
 
-                var dataReader = await cmd.ExecuteReaderAsync();
+                var dataReader = await sqlCommand.ExecuteReaderAsync();
                 while (dataReader.Read())
                 {
                     output = $"{output} {dataReader.GetValue(0)} - {dataReader.GetValue(1)} - {dataReader.GetValue(2)}\n";
@@ -124,28 +124,28 @@ namespace DBServer
     {
         static RabbitMQHandler channelClientToServer;
         static RabbitMQHandler channelServerToClient;
-        static DBConnectionHandler handler;
-        static async Task CallDatabase(string msg)
+        static DBConnectionHandler sqlConnectionHandler;
+        static async Task CallDatabase(string stringMessage)
         {
-            Console.WriteLine(msg);
-            Message? m = JsonConvert.DeserializeObject<Message>(msg);
-            if (m == null) { return; }
+            Console.WriteLine(stringMessage);
+            Message? message = JsonConvert.DeserializeObject<Message>(stringMessage);
+            if (message == null) { return; }
             else
             {
                 Console.WriteLine($"[debug] timestamp: [{DateTime.Now.ToFileTimeUtc()}] callToDB");
-                switch (m.msgType)
+                switch (message.msgType)
                 {
-                    case Message.msgTypes.AddProduct:
-                        handler.AddSomething(m);
+                    case Message.MsgTypes.AddProduct:
+                        sqlConnectionHandler.AddSomething(message);
                         break;
-                    case Message.msgTypes.RemoveProduct:
-                        handler.RemoveSomething(m);
+                    case Message.MsgTypes.RemoveProduct:
+                        sqlConnectionHandler.RemoveSomething(message);
                         break;
-                    case Message.msgTypes.ModifyProduct:
-                        handler.ModifySomething(m);
+                    case Message.MsgTypes.ModifyProduct:
+                        sqlConnectionHandler.ModifySomething(message);
                         break;
-                    case Message.msgTypes.ShowList:
-                        string toSend = await handler.ShowSomething();
+                    case Message.MsgTypes.ShowList:
+                        string toSend = await sqlConnectionHandler.ShowSomething();
                         channelServerToClient.Send(toSend);
                         break;
                     default:
@@ -155,8 +155,8 @@ namespace DBServer
         }
         static void Main()
         {
-            handler = new DBConnectionHandler();
-            handler.DBConnect();
+            sqlConnectionHandler = new DBConnectionHandler();
+            sqlConnectionHandler.DBConnect();
             channelClientToServer = new RabbitMQHandler("Queue1", "MyExchange1", "RabbitMQ_CTB");
             channelServerToClient = new RabbitMQHandler("Queue2", "MyExchange2", "RabbitMQ_BTC");
             while (true)
@@ -164,7 +164,7 @@ namespace DBServer
                 DelegateCallbackRecv callback = new DelegateCallbackRecv(CallDatabase);
                 channelClientToServer.Receive(callback);
             }
-            handler.DBDisconnect();
+            sqlConnectionHandler.DBDisconnect();
         }
     }
 }

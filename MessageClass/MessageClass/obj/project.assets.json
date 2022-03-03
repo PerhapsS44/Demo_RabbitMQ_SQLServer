@@ -53,11 +53,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Stefan.saraev\\source\\repos\\MessageClass\\MessageClass\\MessageClass.csproj",
+      "projectUniqueName": "C:\\Users\\Stefan.saraev\\source\\repos\\Demo_RabbitMQ_SQLServer\\MessageClass\\MessageClass\\MessageClass.csproj",
       "projectName": "MessageClass",
-      "projectPath": "C:\\Users\\Stefan.saraev\\source\\repos\\MessageClass\\MessageClass\\MessageClass.csproj",
+      "projectPath": "C:\\Users\\Stefan.saraev\\source\\repos\\Demo_RabbitMQ_SQLServer\\MessageClass\\MessageClass\\MessageClass.csproj",
       "packagesPath": "C:\\Users\\Stefan.saraev\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Stefan.saraev\\source\\repos\\MessageClass\\MessageClass\\obj\\",
+      "outputPath": "C:\\Users\\Stefan.saraev\\source\\repos\\Demo_RabbitMQ_SQLServer\\MessageClass\\MessageClass\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\Stefan.saraev\\AppData\\Roaming\\NuGet\\NuGet.Config",

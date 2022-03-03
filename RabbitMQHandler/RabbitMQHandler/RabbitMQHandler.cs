@@ -10,22 +10,20 @@ namespace RabbitMQHandlerClass
     public class MessageReceiver : AsyncDefaultBasicConsumer
     {
         private readonly IModel _channel;
-        private DelegateCallbackRecv o = null;
-        public MessageReceiver(IModel channel, DelegateCallbackRecv o)
+        private DelegateCallbackRecv delegateCallback = null;
+        public MessageReceiver(IModel channel, DelegateCallbackRecv delegateCallback)
         {
             _channel = channel;
-            this.o = o;
+            this.delegateCallback = delegateCallback;
         }
         public override Task HandleBasicDeliver(string consumerTag, ulong deliveryTag, bool redelivered, string exchange, string routingKey, IBasicProperties properties, ReadOnlyMemory<byte> body)
         {
-
-
-            //Console.WriteLine(string.Concat("Message: ", Encoding.UTF8.GetString(body.ToArray())));
-
             // use the message
-            string msg = Encoding.UTF8.GetString(body.ToArray());
-            Console.WriteLine($"[debug] timestamp: [{DateTime.Now.ToFileTimeUtc()}] {msg}");
-            o(msg);
+            string message = Encoding.UTF8.GetString(body.ToArray());
+
+            Console.WriteLine($"[debug] timestamp: [{DateTime.Now.ToFileTimeUtc()}] {message}");
+            delegateCallback(message);
+
             _channel.BasicAck(deliveryTag, false);
             return Task.CompletedTask;
         }
@@ -53,15 +51,14 @@ namespace RabbitMQHandlerClass
             IConnection connection =
                         connectionFactory.CreateConnection();
             model = connection.CreateModel();
-            model.ExchangeDeclare(exchangeName, ExchangeType.Direct, true); //"MyExchange"
+            model.ExchangeDeclare(exchangeName, ExchangeType.Direct, true);
 
             model.QueueDeclare(queue: queueName,
                          durable: false,
                          exclusive: false,
                          autoDelete: false,
                          arguments: null);
-            model.QueueBind(queueName, exchangeName, routingKey, //RabbitMQ_CTB
-new Dictionary<string, object>());
+            model.QueueBind(queueName, exchangeName, routingKey, new Dictionary<string, object>());
             basicProperties = model.CreateBasicProperties();
             model.BasicQos(0, 1, false);
         }
@@ -72,12 +69,10 @@ new Dictionary<string, object>());
                 basicProperties, Encoding.UTF8.GetBytes(message));
         }
 
-        public void Receive(DelegateCallbackRecv o)
+        public void Receive(DelegateCallbackRecv delegateCallback)
         {
-            MessageReceiver messageReceiver = new MessageReceiver(model, o);
+            MessageReceiver messageReceiver = new MessageReceiver(model, delegateCallback);
             model.BasicConsume(queueName, false, messageReceiver);
-
-
         }
     }
 }

@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "MBzuBBGsUGMZsW/8JDKDBlrR3FERqY7ZlrVuFMQzEjqKP5bHB+KBPUhXtTyY4ulT48RyVJPxxDmXX1POLz+KSQ==",
+  "dgSpecHash": "NGHu5KNqmuvcOwDX1coOScfSitwK92xHtLsIyMQb9ThKnUblfuy91869aiRKA3GL7xqcQJN7dAHQmC/nVKwTIQ==",
   "success": true,
-  "projectFilePath": "C:\\Users\\Stefan.saraev\\source\\repos\\DBServer\\DBServer\\DBServer.csproj",
+  "projectFilePath": "C:\\Users\\Stefan.saraev\\source\\repos\\Demo_RabbitMQ_SQLServer\\DBServer\\DBServer\\DBServer.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Stefan.saraev\\.nuget\\packages\\microsoft.netcore.platforms\\3.1.0\\microsoft.netcore.platforms.3.1.0.nupkg.sha512",
     "C:\\Users\\Stefan.saraev\\.nuget\\packages\\microsoft.win32.registry\\4.7.0\\microsoft.win32.registry.4.7.0.nupkg.sha512",

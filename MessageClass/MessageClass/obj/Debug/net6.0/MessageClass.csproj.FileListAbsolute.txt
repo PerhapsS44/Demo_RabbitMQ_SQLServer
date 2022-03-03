@@ -10,3 +10,15 @@ C:\Users\Stefan.saraev\source\repos\MessageClass\MessageClass\obj\Debug\net6.0\M
 C:\Users\Stefan.saraev\source\repos\MessageClass\MessageClass\obj\Debug\net6.0\refint\MessageClass.dll
 C:\Users\Stefan.saraev\source\repos\MessageClass\MessageClass\obj\Debug\net6.0\MessageClass.pdb
 C:\Users\Stefan.saraev\source\repos\MessageClass\MessageClass\obj\Debug\net6.0\ref\MessageClass.dll
+C:\Users\Stefan.saraev\source\repos\Demo_RabbitMQ_SQLServer\MessageClass\MessageClass\bin\Debug\net6.0\MessageClass.deps.json
+C:\Users\Stefan.saraev\source\repos\Demo_RabbitMQ_SQLServer\MessageClass\MessageClass\bin\Debug\net6.0\MessageClass.dll
+C:\Users\Stefan.saraev\source\repos\Demo_RabbitMQ_SQLServer\MessageClass\MessageClass\bin\Debug\net6.0\MessageClass.pdb
+C:\Users\Stefan.saraev\source\repos\Demo_RabbitMQ_SQLServer\MessageClass\MessageClass\obj\Debug\net6.0\MessageClass.csproj.AssemblyReference.cache
+C:\Users\Stefan.saraev\source\repos\Demo_RabbitMQ_SQLServer\MessageClass\MessageClass\obj\Debug\net6.0\MessageClass.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Stefan.saraev\source\repos\Demo_RabbitMQ_SQLServer\MessageClass\MessageClass\obj\Debug\net6.0\MessageClass.AssemblyInfoInputs.cache
+C:\Users\Stefan.saraev\source\repos\Demo_RabbitMQ_SQLServer\MessageClass\MessageClass\obj\Debug\net6.0\MessageClass.AssemblyInfo.cs
+C:\Users\Stefan.saraev\source\repos\Demo_RabbitMQ_SQLServer\MessageClass\MessageClass\obj\Debug\net6.0\MessageClass.csproj.CoreCompileInputs.cache
+C:\Users\Stefan.saraev\source\repos\Demo_RabbitMQ_SQLServer\MessageClass\MessageClass\obj\Debug\net6.0\MessageClass.dll
+C:\Users\Stefan.saraev\source\repos\Demo_RabbitMQ_SQLServer\MessageClass\MessageClass\obj\Debug\net6.0\refint\MessageClass.dll
+C:\Users\Stefan.saraev\source\repos\Demo_RabbitMQ_SQLServer\MessageClass\MessageClass\obj\Debug\net6.0\MessageClass.pdb
+C:\Users\Stefan.saraev\source\repos\Demo_RabbitMQ_SQLServer\MessageClass\MessageClass\obj\Debug\net6.0\ref\MessageClass.dll
