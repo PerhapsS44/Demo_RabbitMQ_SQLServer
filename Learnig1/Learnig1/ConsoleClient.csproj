@@ -13,6 +13,12 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Reference Include="Logger">
+      <HintPath>..\..\Logger\Logger\bin\Debug\net6.0\Logger.dll</HintPath>
+    </Reference>
+    <Reference Include="LoggerInterface">
+      <HintPath>..\..\LoggerInterface\LoggerInterface\bin\Debug\net6.0\LoggerInterface.dll</HintPath>
+    </Reference>
     <Reference Include="MessageClass">
       <HintPath>..\..\MessageClass\MessageClass\bin\Debug\net6.0\MessageClass.dll</HintPath>
     </Reference>
