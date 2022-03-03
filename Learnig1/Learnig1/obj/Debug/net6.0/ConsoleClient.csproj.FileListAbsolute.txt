@@ -20,3 +20,7 @@ C:\Users\Stefan.saraev\source\repos\Demo_RabbitMQ_SQLServer\Learnig1\Learnig1\ob
 C:\Users\Stefan.saraev\source\repos\Demo_RabbitMQ_SQLServer\Learnig1\Learnig1\obj\Debug\net6.0\ConsoleClient.pdb
 C:\Users\Stefan.saraev\source\repos\Demo_RabbitMQ_SQLServer\Learnig1\Learnig1\obj\Debug\net6.0\ConsoleClient.genruntimeconfig.cache
 C:\Users\Stefan.saraev\source\repos\Demo_RabbitMQ_SQLServer\Learnig1\Learnig1\obj\Debug\net6.0\ref\ConsoleClient.dll
+C:\Users\Stefan.saraev\source\repos\Demo_RabbitMQ_SQLServer\Learnig1\Learnig1\bin\Debug\net6.0\Logger.dll
+C:\Users\Stefan.saraev\source\repos\Demo_RabbitMQ_SQLServer\Learnig1\Learnig1\bin\Debug\net6.0\LoggerInterface.dll
+C:\Users\Stefan.saraev\source\repos\Demo_RabbitMQ_SQLServer\Learnig1\Learnig1\bin\Debug\net6.0\Logger.pdb
+C:\Users\Stefan.saraev\source\repos\Demo_RabbitMQ_SQLServer\Learnig1\Learnig1\bin\Debug\net6.0\LoggerInterface.pdb

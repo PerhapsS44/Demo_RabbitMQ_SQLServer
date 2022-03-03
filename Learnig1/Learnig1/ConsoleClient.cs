@@ -61,8 +61,19 @@ namespace Learning1
             channelClientToServer = new RabbitMQHandler("Queue1", "MyExchange1", "RabbitMQ_CTB");
             channelServerToClient = new RabbitMQHandler("Queue2", "MyExchange2", "RabbitMQ_BTC");
 
-            Logger.Logger.Instance.SetLogFile("logfile.txt");
             logger = Logger.Logger.Instance;
+            if (Logger.Logger.Instance == null)
+            {
+                Console.WriteLine("instanta e nula");
+            }
+            if (logger == null)
+            {
+                Console.WriteLine("instanta 2 e nula");
+
+            }
+            Logger.Logger.Instance.SetLogFile("logfile.txt");
+
+
 
             DelegateCallbackRecv delegateCallback = new DelegateCallbackRecv(ShowMessage);
             channelServerToClient.Receive(delegateCallback);

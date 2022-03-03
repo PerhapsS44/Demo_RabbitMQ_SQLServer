@@ -47,12 +47,13 @@ namespace DBServer
         {
             try
             {
-                string query = "INSERT INTO DemoTable(ProductName, ProductQuantity) VALUES(@ProductName, @ProductQuantity)";
+                string query = "INSERT INTO DemoTable(ProductName, ProductQuantity, Price) VALUES(@ProductName, @ProductQuantity, @Price)";
 
                 var sqlCommand = new SqlCommand(query, connection);
 
                 sqlCommand.Parameters.Add(new SqlParameter("@ProductName", SqlDbType.VarChar, 255)).Value = message.productName;
                 sqlCommand.Parameters.Add("@ProductQuantity", SqlDbType.Int).Value = message.quantity;
+                sqlCommand.Parameters.Add("@Price", SqlDbType.Int).Value = message.price;
                 sqlCommand.Prepare();
 
                 sqlCommand.ExecuteNonQuery();
@@ -64,12 +65,14 @@ namespace DBServer
         {
             try
             {
-                string query = "UPDATE DemoTable SET ProductQuantity=@ProductQuantity WHERE ProductName=@ProductName";
+                string query = "UPDATE DemoTable SET ProductQuantity=@ProductQuantity, Price=@Price WHERE ProductName=@ProductName";
 
                 var sqlCommand = new SqlCommand(query, connection);
 
                 sqlCommand.Parameters.Add(new SqlParameter("@ProductName", SqlDbType.VarChar, 255)).Value = message.productName;
                 sqlCommand.Parameters.Add("@ProductQuantity", SqlDbType.Int).Value = message.quantity;
+                sqlCommand.Parameters.Add("@Price", SqlDbType.Int).Value = message.price;
+
                 sqlCommand.Prepare();
 
                 sqlCommand.ExecuteNonQuery();
@@ -108,13 +111,13 @@ namespace DBServer
                 var dataReader = await sqlCommand.ExecuteReaderAsync();
                 while (dataReader.Read())
                 {
-                    output = $"{output} {dataReader.GetValue(0)} - {dataReader.GetValue(1)} - {dataReader.GetValue(2)}\n";
+                    output = $"{output} {dataReader.GetValue(0)} - {dataReader.GetValue(1)} - {dataReader.GetValue(2)} - {dataReader.GetValue(3)}\n";
                 }
 
                 dataReader.Close();
             }
             catch (Exception ex) { Console.WriteLine(ex.Message); }
-            Console.WriteLine($"[debug] timestamp: [{DateTime.Now.ToFileTimeUtc()}] dataFromDB");
+            //Console.WriteLine($"[debug] timestamp: [{DateTime.Now.ToFileTimeUtc()}] dataFromDB");
 
             return output;
 
@@ -127,12 +130,12 @@ namespace DBServer
         static DBConnectionHandler sqlConnectionHandler;
         static async Task CallDatabase(string stringMessage)
         {
-            Console.WriteLine(stringMessage);
+            //Console.WriteLine(stringMessage);
             Message? message = JsonConvert.DeserializeObject<Message>(stringMessage);
             if (message == null) { return; }
             else
             {
-                Console.WriteLine($"[debug] timestamp: [{DateTime.Now.ToFileTimeUtc()}] callToDB");
+                //Console.WriteLine($"[debug] timestamp: [{DateTime.Now.ToFileTimeUtc()}] callToDB");
                 switch (message.msgType)
                 {
                     case Message.MsgTypes.AddProduct:

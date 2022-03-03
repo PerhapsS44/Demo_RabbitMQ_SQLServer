@@ -9,7 +9,7 @@ namespace Logger
         private static readonly object padlock = new object();
 
         private FileStream logFile;
-        private string fileName;
+        private string fileName = null;
         private Logger()
         {
         }
@@ -30,7 +30,7 @@ namespace Logger
 
         public void SetLogFile(string fileName)
         {
-            if (fileName != null)
+            if (this.fileName != null)
             {
                 logFile.Close();
             }
