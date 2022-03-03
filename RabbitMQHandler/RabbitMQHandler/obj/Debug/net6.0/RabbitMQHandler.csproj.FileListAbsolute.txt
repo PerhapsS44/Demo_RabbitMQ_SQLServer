@@ -1,0 +1,12 @@
+C:\Users\Stefan.saraev\source\repos\RabbitMQHandler\RabbitMQHandler\bin\Debug\net6.0\RabbitMQHandler.deps.json
+C:\Users\Stefan.saraev\source\repos\RabbitMQHandler\RabbitMQHandler\bin\Debug\net6.0\RabbitMQHandler.dll
+C:\Users\Stefan.saraev\source\repos\RabbitMQHandler\RabbitMQHandler\bin\Debug\net6.0\RabbitMQHandler.pdb
+C:\Users\Stefan.saraev\source\repos\RabbitMQHandler\RabbitMQHandler\obj\Debug\net6.0\RabbitMQHandler.csproj.AssemblyReference.cache
+C:\Users\Stefan.saraev\source\repos\RabbitMQHandler\RabbitMQHandler\obj\Debug\net6.0\RabbitMQHandler.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Stefan.saraev\source\repos\RabbitMQHandler\RabbitMQHandler\obj\Debug\net6.0\RabbitMQHandler.AssemblyInfoInputs.cache
+C:\Users\Stefan.saraev\source\repos\RabbitMQHandler\RabbitMQHandler\obj\Debug\net6.0\RabbitMQHandler.AssemblyInfo.cs
+C:\Users\Stefan.saraev\source\repos\RabbitMQHandler\RabbitMQHandler\obj\Debug\net6.0\RabbitMQHandler.csproj.CoreCompileInputs.cache
+C:\Users\Stefan.saraev\source\repos\RabbitMQHandler\RabbitMQHandler\obj\Debug\net6.0\RabbitMQHandler.dll
+C:\Users\Stefan.saraev\source\repos\RabbitMQHandler\RabbitMQHandler\obj\Debug\net6.0\refint\RabbitMQHandler.dll
+C:\Users\Stefan.saraev\source\repos\RabbitMQHandler\RabbitMQHandler\obj\Debug\net6.0\RabbitMQHandler.pdb
+C:\Users\Stefan.saraev\source\repos\RabbitMQHandler\RabbitMQHandler\obj\Debug\net6.0\ref\RabbitMQHandler.dll
