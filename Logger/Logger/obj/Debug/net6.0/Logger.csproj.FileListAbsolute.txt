@@ -1,0 +1,15 @@
+C:\Users\Stefan.saraev\source\repos\Demo_RabbitMQ_SQLServer\Logger\Logger\bin\Debug\net6.0\Logger.deps.json
+C:\Users\Stefan.saraev\source\repos\Demo_RabbitMQ_SQLServer\Logger\Logger\bin\Debug\net6.0\Logger.dll
+C:\Users\Stefan.saraev\source\repos\Demo_RabbitMQ_SQLServer\Logger\Logger\bin\Debug\net6.0\Logger.pdb
+C:\Users\Stefan.saraev\source\repos\Demo_RabbitMQ_SQLServer\Logger\Logger\bin\Debug\net6.0\LoggerInterface.dll
+C:\Users\Stefan.saraev\source\repos\Demo_RabbitMQ_SQLServer\Logger\Logger\bin\Debug\net6.0\LoggerInterface.pdb
+C:\Users\Stefan.saraev\source\repos\Demo_RabbitMQ_SQLServer\Logger\Logger\obj\Debug\net6.0\Logger.csproj.AssemblyReference.cache
+C:\Users\Stefan.saraev\source\repos\Demo_RabbitMQ_SQLServer\Logger\Logger\obj\Debug\net6.0\Logger.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Stefan.saraev\source\repos\Demo_RabbitMQ_SQLServer\Logger\Logger\obj\Debug\net6.0\Logger.AssemblyInfoInputs.cache
+C:\Users\Stefan.saraev\source\repos\Demo_RabbitMQ_SQLServer\Logger\Logger\obj\Debug\net6.0\Logger.AssemblyInfo.cs
+C:\Users\Stefan.saraev\source\repos\Demo_RabbitMQ_SQLServer\Logger\Logger\obj\Debug\net6.0\Logger.csproj.CoreCompileInputs.cache
+C:\Users\Stefan.saraev\source\repos\Demo_RabbitMQ_SQLServer\Logger\Logger\obj\Debug\net6.0\Logger.csproj.CopyComplete
+C:\Users\Stefan.saraev\source\repos\Demo_RabbitMQ_SQLServer\Logger\Logger\obj\Debug\net6.0\Logger.dll
+C:\Users\Stefan.saraev\source\repos\Demo_RabbitMQ_SQLServer\Logger\Logger\obj\Debug\net6.0\refint\Logger.dll
+C:\Users\Stefan.saraev\source\repos\Demo_RabbitMQ_SQLServer\Logger\Logger\obj\Debug\net6.0\Logger.pdb
+C:\Users\Stefan.saraev\source\repos\Demo_RabbitMQ_SQLServer\Logger\Logger\obj\Debug\net6.0\ref\Logger.dll
