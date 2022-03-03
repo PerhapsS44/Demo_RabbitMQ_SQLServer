@@ -13,19 +13,22 @@ namespace MessageClass
         public MsgTypes msgType { get; set; }
         public string productName { get; set; }
         public int quantity { get; set; }
+        public float price { get; set; }
 
         public Message(MsgTypes msgType)
         {
             this.msgType = msgType;
             this.productName = "";
             this.quantity = 0;
+            this.price = 0;
         }
         [JsonConstructor]
-        public Message(Message.MsgTypes msgType, string productName, int quantity)
+        public Message(Message.MsgTypes msgType, string productName, int quantity, float price)
         {
             this.msgType = msgType;
             this.productName = productName;
             this.quantity = quantity;
+            this.price = price;
         }
 
         public static Message.MsgTypes? GetMsgTypes(string str)
