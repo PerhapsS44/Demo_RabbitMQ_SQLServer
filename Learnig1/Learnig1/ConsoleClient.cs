@@ -2,6 +2,8 @@
 using System;
 using MessageClass;
 using RabbitMQHandlerClass;
+using Logger;
+using LoggerTemplate;
 
 namespace Learning1
 {
@@ -9,7 +11,7 @@ namespace Learning1
     {
         static RabbitMQHandler channelClientToServer;
         static RabbitMQHandler channelServerToClient;
-
+        static LoggerInterface logger;
         public static void SendMessage(Message msg)
         {
             channelClientToServer.Send(JsonConvert.SerializeObject(msg));
@@ -18,9 +20,11 @@ namespace Learning1
         public static void ProcessMessage(Message.MsgTypes msgType, String[] line)
         {
             int quantity;
-            if (line.Length < 3 && msgType != Message.MsgTypes.ShowList)
+            float price;
+            if (line.Length < 4 && msgType != Message.MsgTypes.ShowList)
             {
                 Console.WriteLine("Invalid Operation! Too few arguments!");
+                logger.LogWarning("Invalid Operation! Too few arguments!");
                 return;
             }
             try
@@ -33,13 +37,16 @@ namespace Learning1
                 else
                 {
                     quantity = Convert.ToInt32(line[2]);
-                    msg = new Message(msgType, line[1], quantity);
+                    price = (float)Convert.ToDouble(line[3]);
+
+                    msg = new Message(msgType, line[1], quantity, price);
                 }
                 SendMessage(msg);
             }
             catch (Exception)
             {
                 Console.WriteLine("Invalid Operation! Quantity is not a number");
+                logger.LogWarning("Invalid Operation! Quantity is not a number");
             }
         }
 
@@ -53,6 +60,9 @@ namespace Learning1
         {
             channelClientToServer = new RabbitMQHandler("Queue1", "MyExchange1", "RabbitMQ_CTB");
             channelServerToClient = new RabbitMQHandler("Queue2", "MyExchange2", "RabbitMQ_BTC");
+
+            Logger.Logger.Instance.SetLogFile("logfile.txt");
+            logger = Logger.Logger.Instance;
 
             DelegateCallbackRecv delegateCallback = new DelegateCallbackRecv(ShowMessage);
             channelServerToClient.Receive(delegateCallback);
@@ -74,6 +84,8 @@ namespace Learning1
                 else
                 {
                     Console.WriteLine("Invalid operation!");
+                    logger.LogWarning("Invalid operation!");
+
                 }
             }
         }
