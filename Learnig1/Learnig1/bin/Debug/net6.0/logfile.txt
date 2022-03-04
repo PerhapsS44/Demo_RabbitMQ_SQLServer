@@ -1,1 +1,2 @@
 [warning] Invalid operation!
+[warning] Invalid Operation! Too few arguments!

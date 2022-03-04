@@ -1,14 +1,16 @@
-﻿
-using RabbitMQHandlerClass;
-using MessageClass;
-using Newtonsoft.Json;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 using System.Data.SqlClient;
 using System.Data;
+using MessageClass;
+
 
 namespace DBServer
 {
-
-    public class DBConnectionHandler
+    public class DB_SQLHandler : DBHandlerInterface
     {
         SqlConnection connection;
         string connetionString = "Data Source=(LocalDB)\\MSSQLLocalDB;Initial Catalog=Demo;Trusted_Connection=True;";
@@ -96,7 +98,7 @@ namespace DBServer
             catch (Exception ex) { Console.WriteLine(ex.Message); }
         }
 
-        public async Task<string> ShowSomething()
+        public async Task<string> ShowSomethingAsync()
         {
             string output = "";
 
@@ -121,53 +123,6 @@ namespace DBServer
 
             return output;
 
-        }
-    }
-    public static class DBServerExtensions
-    {
-        static RabbitMQHandler channelClientToServer;
-        static RabbitMQHandler channelServerToClient;
-        static DBConnectionHandler sqlConnectionHandler;
-        static async Task CallDatabase(string stringMessage)
-        {
-            //Console.WriteLine(stringMessage);
-            Message? message = JsonConvert.DeserializeObject<Message>(stringMessage);
-            if (message == null) { return; }
-            else
-            {
-                //Console.WriteLine($"[debug] timestamp: [{DateTime.Now.ToFileTimeUtc()}] callToDB");
-                switch (message.msgType)
-                {
-                    case Message.MsgTypes.AddProduct:
-                        sqlConnectionHandler.AddSomething(message);
-                        break;
-                    case Message.MsgTypes.RemoveProduct:
-                        sqlConnectionHandler.RemoveSomething(message);
-                        break;
-                    case Message.MsgTypes.ModifyProduct:
-                        sqlConnectionHandler.ModifySomething(message);
-                        break;
-                    case Message.MsgTypes.ShowList:
-                        string toSend = await sqlConnectionHandler.ShowSomething();
-                        channelServerToClient.Send(toSend);
-                        break;
-                    default:
-                        break;
-                }
-            }
-        }
-        static void Main()
-        {
-            sqlConnectionHandler = new DBConnectionHandler();
-            sqlConnectionHandler.DBConnect();
-            channelClientToServer = new RabbitMQHandler("Queue1", "MyExchange1", "RabbitMQ_CTB");
-            channelServerToClient = new RabbitMQHandler("Queue2", "MyExchange2", "RabbitMQ_BTC");
-            while (true)
-            {
-                DelegateCallbackRecv callback = new DelegateCallbackRecv(CallDatabase);
-                channelClientToServer.Receive(callback);
-            }
-            sqlConnectionHandler.DBDisconnect();
         }
     }
 }
