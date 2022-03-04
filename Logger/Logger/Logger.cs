@@ -27,17 +27,15 @@ namespace Logger
                 }
             }
         }
-
-        public void SetLogFile(string fileName)
+        public void InitLogger(string args)
         {
             if (this.fileName != null)
             {
                 logFile.Close();
             }
-            this.fileName = fileName;
+            this.fileName = args;
 
             logFile = new FileStream(instance.fileName, FileMode.Append);
-
         }
 
         public void LogError(string message)
