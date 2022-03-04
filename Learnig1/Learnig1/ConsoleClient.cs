@@ -62,16 +62,7 @@ namespace Learning1
             channelServerToClient = new RabbitMQHandler("Queue2", "MyExchange2", "RabbitMQ_BTC");
 
             logger = Logger.Logger.Instance;
-            if (Logger.Logger.Instance == null)
-            {
-                Console.WriteLine("instanta e nula");
-            }
-            if (logger == null)
-            {
-                Console.WriteLine("instanta 2 e nula");
-
-            }
-            Logger.Logger.Instance.SetLogFile("logfile.txt");
+            logger.InitLogger("logfile.txt");
 
 
 
