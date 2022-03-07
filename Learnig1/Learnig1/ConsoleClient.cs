@@ -17,11 +17,11 @@ namespace Learning1
             channelClientToServer.Send(JsonConvert.SerializeObject(msg));
         }
         // constructing the message from the input string and sending it
-        public static void ProcessMessage(Message.MsgTypes msgType, String[] line)
+        public static void ProcessMessage(Message.MessageTypes msgType, String[] line)
         {
             int quantity;
-            float price;
-            if (line.Length < 4 && msgType != Message.MsgTypes.ShowList)
+            decimal price;
+            if (line.Length < 4 && msgType != Message.MessageTypes.ShowList)
             {
                 Console.WriteLine("Invalid Operation! Too few arguments!");
                 logger.LogWarning("Invalid Operation! Too few arguments!");
@@ -30,16 +30,16 @@ namespace Learning1
             try
             {
                 Message msg;
-                if (msgType == Message.MsgTypes.ShowList)
+                if (msgType == Message.MessageTypes.ShowList)
                 {
                     msg = new Message(msgType);
                 }
                 else
                 {
                     quantity = Convert.ToInt32(line[2]);
-                    price = (float)Convert.ToDouble(line[3]);
-
-                    msg = new Message(msgType, line[1], quantity, price);
+                    price = Convert.ToDecimal(line[3]);
+                    Product product = new Product(line[1], quantity, price);
+                    msg = new Message(msgType, JsonConvert.SerializeObject(product));
                 }
                 SendMessage(msg);
             }
@@ -73,11 +73,11 @@ namespace Learning1
             while (true)
             {
                 consoleInput = Console.ReadLine().Split(' ');
-                Message.MsgTypes? msgType = Message.GetMsgTypes(consoleInput[0]);
+                Message.MessageTypes? msgType = Message.GetMsgTypes(consoleInput[0]);
                 if (msgType != null)
                 {
                     // message is of the known types
-                    ProcessMessage((Message.MsgTypes)msgType, consoleInput);
+                    ProcessMessage((Message.MessageTypes)msgType, consoleInput);
                 }
                 else if (consoleInput[0].Equals("Exit"))
                 {

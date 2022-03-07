@@ -64,7 +64,7 @@ namespace DatabaseFileHandler
         public void AddSomething(Message message)
         {
             OpenFileAppend();
-            FileDBFormat data = new FileDBFormat(message.productName, message.quantity, message.price);
+            FileDBFormat data = new FileDBFormat(message.payload);
             string line = JsonConvert.SerializeObject(data);
             StreamWriter writer = new StreamWriter(file);
             writer.WriteLine(line);
@@ -78,18 +78,18 @@ namespace DatabaseFileHandler
             StreamReader reader = new StreamReader(file);
             StreamWriter writer = new StreamWriter("temp.txt");
             string? line;
-            FileDBFormat data;
             line = reader.ReadLine();
             // scriu din fisierul meu intr un temp
+            Product reference = JsonConvert.DeserializeObject<Product>(message.payload);
             while (line != null)
             {
-                data = JsonConvert.DeserializeObject<FileDBFormat>(line);
-                if (data.productName == message.productName)
+                Product product = JsonConvert.DeserializeObject<Product>(line);
+                if (product.name == reference.name)
                 {
-                    data.productPrice = message.price;
-                    data.productQuantity = message.quantity;
+                    product.price = reference.price;
+                    product.price = reference.quantity;
                     // trebuie sa scriu inapoi linia asta
-                    line = JsonConvert.SerializeObject(data);
+                    line = JsonConvert.SerializeObject(product);
                 }
                 writer.WriteLine(line);
                 line = reader.ReadLine();
@@ -107,13 +107,14 @@ namespace DatabaseFileHandler
             StreamReader reader = new StreamReader(file);
             StreamWriter writer = new StreamWriter("temp.txt");
             string? line;
-            FileDBFormat data;
+            Product reference = JsonConvert.DeserializeObject<Product>(message.payload);
+
             line = reader.ReadLine();
             // scriu din fisierul meu intr un temp
             while (line != null)
             {
-                data = JsonConvert.DeserializeObject<FileDBFormat>(line);
-                if (data.productName != message.productName)
+                Product product = JsonConvert.DeserializeObject<Product>(line);
+                if (product.name != reference.name)
                 {
                     writer.WriteLine(line);
                 }
@@ -131,12 +132,12 @@ namespace DatabaseFileHandler
             string output = "";
             OpenFileRead();
             StreamReader reader = new StreamReader(file);
-            FileDBFormat data;
+            Product data;
             string? line;
             while ((line = reader.ReadLine()) != null)
             {
-                data = JsonConvert.DeserializeObject<FileDBFormat>(line);
-                output += $"{data.productName} - {data.productQuantity} - {data.productPrice}\n";
+                data = JsonConvert.DeserializeObject<Product>(line);
+                output += $"{data.name} - {data.quantity} - {data.price}\n";
             }
             CloseFile();
             return Task.FromResult(output);
@@ -145,15 +146,11 @@ namespace DatabaseFileHandler
 
     internal class FileDBFormat
     {
-        public string productName { get; set; }
-        public int productQuantity { get; set; }
-        public float productPrice { get; set; }
+        public string payload { get; set; }
 
-        public FileDBFormat(string productName, int productQuantity, float productPrice)
+        public FileDBFormat(string payload)
         {
-            this.productName = productName;
-            this.productQuantity = productQuantity;
-            this.productPrice = productPrice;
+            this.payload = payload;
         }
     }
 }

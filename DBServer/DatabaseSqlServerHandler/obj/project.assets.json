@@ -505,6 +505,7 @@
   "projectFileDependencyGroups": {
     "net6.0": [
       "Core >= 1.0.0",
+      "Newtonsoft.Json >= 13.0.1",
       "System.Data.SqlClient >= 4.8.3"
     ]
   },
@@ -551,6 +552,10 @@
       "net6.0": {
         "targetAlias": "net6.0",
         "dependencies": {
+          "Newtonsoft.Json": {
+            "target": "Package",
+            "version": "[13.0.1, )"
+          },
           "System.Data.SqlClient": {
             "target": "Package",
             "version": "[4.8.3, )"

@@ -3,46 +3,41 @@ namespace Core
 {
     public class Message
     {
-        public enum MsgTypes
+        public enum MessageTypes
         {
             AddProduct,
             RemoveProduct,
             ModifyProduct,
             ShowList
         }
-        public MsgTypes msgType { get; set; }
-        public string productName { get; set; }
-        public int quantity { get; set; }
-        public float price { get; set; }
+        public MessageTypes type { get; set; }
 
-        public Message(MsgTypes msgType)
+        public string payload;
+
+        public Message(MessageTypes msgType)
         {
-            this.msgType = msgType;
-            this.productName = "";
-            this.quantity = 0;
-            this.price = 0;
+            this.type = msgType;
+            this.payload = "";
         }
         [JsonConstructor]
-        public Message(Message.MsgTypes msgType, string productName, int quantity, float price)
+        public Message(Message.MessageTypes msgType, string payload)
         {
-            this.msgType = msgType;
-            this.productName = productName;
-            this.quantity = quantity;
-            this.price = price;
+            this.type = msgType;
+            this.payload = payload;
         }
 
-        public static Message.MsgTypes? GetMsgTypes(string str)
+        public static Message.MessageTypes? GetMsgTypes(string str)
         {
             switch (str)
             {
                 case "AddProduct":
-                    return Message.MsgTypes.AddProduct;
+                    return Message.MessageTypes.AddProduct;
                 case "RemoveProduct":
-                    return Message.MsgTypes.RemoveProduct;
+                    return Message.MessageTypes.RemoveProduct;
                 case "ModifyProduct":
-                    return Message.MsgTypes.ModifyProduct;
+                    return Message.MessageTypes.ModifyProduct;
                 case "ShowList":
-                    return Message.MsgTypes.ShowList;
+                    return Message.MessageTypes.ShowList;
                 default: return null;
             }
         }

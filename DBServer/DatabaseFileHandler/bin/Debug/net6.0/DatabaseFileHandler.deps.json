@@ -8,8 +8,7 @@
     ".NETCoreApp,Version=v6.0": {
       "DatabaseFileHandler/1.0.0": {
         "dependencies": {
-          "Core": "1.0.0",
-          "MessageClass": "1.0.0.0"
+          "Core": "1.0.0"
         },
         "runtime": {
           "DatabaseFileHandler.dll": {}
@@ -30,14 +29,6 @@
         "runtime": {
           "Core.dll": {}
         }
-      },
-      "MessageClass/1.0.0.0": {
-        "runtime": {
-          "MessageClass.dll": {
-            "assemblyVersion": "1.0.0.0",
-            "fileVersion": "1.0.0.0"
-          }
-        }
       }
     }
   },
@@ -56,11 +47,6 @@
     },
     "Core/1.0.0": {
       "type": "project",
-      "serviceable": false,
-      "sha512": ""
-    },
-    "MessageClass/1.0.0.0": {
-      "type": "reference",
       "serviceable": false,
       "sha512": ""
     }

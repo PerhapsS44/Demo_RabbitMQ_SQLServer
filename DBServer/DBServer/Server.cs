@@ -22,18 +22,18 @@ namespace DBServer
             else
             {
                 //Console.WriteLine($"[debug] timestamp: [{DateTime.Now.ToFileTimeUtc()}] callToDB");
-                switch (message.msgType)
+                switch (message.type)
                 {
-                    case Message.MsgTypes.AddProduct:
+                    case Message.MessageTypes.AddProduct:
                         sqlConnectionHandler.AddSomething(message);
                         break;
-                    case Message.MsgTypes.RemoveProduct:
+                    case Message.MessageTypes.RemoveProduct:
                         sqlConnectionHandler.RemoveSomething(message);
                         break;
-                    case Message.MsgTypes.ModifyProduct:
+                    case Message.MessageTypes.ModifyProduct:
                         sqlConnectionHandler.ModifySomething(message);
                         break;
-                    case Message.MsgTypes.ShowList:
+                    case Message.MessageTypes.ShowList:
                         string toSend = await sqlConnectionHandler.ShowSomethingAsync();
                         channelServerToClient.Send(toSend);
                         break;
