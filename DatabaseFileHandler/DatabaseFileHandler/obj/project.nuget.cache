@@ -1,0 +1,10 @@
+{
+  "version": 2,
+  "dgSpecHash": "P9VgsnSkmkTxqtwa+yISr7y8UolXaJfBc8NLGia6ii56DIrbQpRM3FOZZ+80b/GwH0UKCJncMoBeJiSndEnMUA==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\Stefan.saraev\\source\\repos\\Demo_RabbitMQ_SQLServer\\DatabaseFileHandler\\DatabaseFileHandler\\DatabaseFileHandler.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\Stefan.saraev\\.nuget\\packages\\newtonsoft.json\\13.0.1\\newtonsoft.json.13.0.1.nupkg.sha512"
+  ],
+  "logs": []
+}

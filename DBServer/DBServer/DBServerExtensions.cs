@@ -42,10 +42,8 @@ namespace DBServer
         }
         static void Main()
         {
-            //sqlConnectionHandler = new DB_SQLHandler();
-
-            //ConfigurationParser configData = new ConfigurationParser("config.json");
-            ConfigurationParser configData = JsonConvert.DeserializeObject<ConfigurationParser>(File.ReadAllText($"{Directory.GetCurrentDirectory()}\\..\\..\\..\\config.json"));
+            string configFilePath = $"{Directory.GetCurrentDirectory()}\\..\\..\\..\\config.json";
+            ConfigurationParser configData = JsonConvert.DeserializeObject<ConfigurationParser>(File.ReadAllText(configFilePath));
 
             if (configData.DatabaseType == "SQL_Server"){
                 sqlConnectionHandler = new DB_SQLHandler();

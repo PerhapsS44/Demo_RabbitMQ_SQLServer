@@ -7,7 +7,7 @@ using MessageClass;
 
 namespace DBServer
 {
-    interface DBHandlerInterface
+    public interface DBHandlerInterface
     {
         public void DBConnect();
         public void DBDisconnect();
