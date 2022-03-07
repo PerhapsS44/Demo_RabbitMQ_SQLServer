@@ -8,7 +8,7 @@ namespace Core
 {
     public class Product
     {
-        public string productName { get; set; }
+        public string name { get; set; }
         public int quantity { get; set; }
         public decimal price { get; set; }
 

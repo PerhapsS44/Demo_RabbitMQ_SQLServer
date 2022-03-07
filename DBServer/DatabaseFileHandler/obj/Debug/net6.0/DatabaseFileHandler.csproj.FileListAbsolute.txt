@@ -2,9 +2,7 @@ C:\Users\Stefan.saraev\source\repos\Demo_RabbitMQ_SQLServer\DBServer\DatabaseFil
 C:\Users\Stefan.saraev\source\repos\Demo_RabbitMQ_SQLServer\DBServer\DatabaseFileHandler\bin\Debug\net6.0\DatabaseFileHandler.dll
 C:\Users\Stefan.saraev\source\repos\Demo_RabbitMQ_SQLServer\DBServer\DatabaseFileHandler\bin\Debug\net6.0\DatabaseFileHandler.pdb
 C:\Users\Stefan.saraev\source\repos\Demo_RabbitMQ_SQLServer\DBServer\DatabaseFileHandler\bin\Debug\net6.0\Core.dll
-C:\Users\Stefan.saraev\source\repos\Demo_RabbitMQ_SQLServer\DBServer\DatabaseFileHandler\bin\Debug\net6.0\MessageClass.dll
 C:\Users\Stefan.saraev\source\repos\Demo_RabbitMQ_SQLServer\DBServer\DatabaseFileHandler\bin\Debug\net6.0\Core.pdb
-C:\Users\Stefan.saraev\source\repos\Demo_RabbitMQ_SQLServer\DBServer\DatabaseFileHandler\bin\Debug\net6.0\MessageClass.pdb
 C:\Users\Stefan.saraev\source\repos\Demo_RabbitMQ_SQLServer\DBServer\DatabaseFileHandler\obj\Debug\net6.0\DatabaseFileHandler.csproj.AssemblyReference.cache
 C:\Users\Stefan.saraev\source\repos\Demo_RabbitMQ_SQLServer\DBServer\DatabaseFileHandler\obj\Debug\net6.0\DatabaseFileHandler.GeneratedMSBuildEditorConfig.editorconfig
 C:\Users\Stefan.saraev\source\repos\Demo_RabbitMQ_SQLServer\DBServer\DatabaseFileHandler\obj\Debug\net6.0\DatabaseFileHandler.AssemblyInfoInputs.cache

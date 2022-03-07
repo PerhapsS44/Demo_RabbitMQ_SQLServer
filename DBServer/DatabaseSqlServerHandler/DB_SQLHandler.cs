@@ -6,6 +6,8 @@ using System.Threading.Tasks;
 using System.Data.SqlClient;
 using System.Data;
 using Core;
+using Newtonsoft.Json;
+
 namespace DatabaseSqlServerHandler
 {
     public class DB_SQLHandler : DBHandlerInterface
@@ -48,12 +50,13 @@ namespace DatabaseSqlServerHandler
             try
             {
                 string query = "INSERT INTO DemoTable(ProductName, ProductQuantity, Price) VALUES(@ProductName, @ProductQuantity, @Price)";
-
+                Product product = JsonConvert.DeserializeObject<Product>(message.payload);
+                
                 var sqlCommand = new SqlCommand(query, connection);
 
-                sqlCommand.Parameters.Add(new SqlParameter("@ProductName", SqlDbType.VarChar, 255)).Value = message.productName;
-                sqlCommand.Parameters.Add("@ProductQuantity", SqlDbType.Int).Value = message.quantity;
-                sqlCommand.Parameters.Add("@Price", SqlDbType.Int).Value = message.price;
+                sqlCommand.Parameters.Add(new SqlParameter("@ProductName", SqlDbType.VarChar, 255)).Value = product.name;
+                sqlCommand.Parameters.Add("@ProductQuantity", SqlDbType.Int).Value = product.quantity;
+                sqlCommand.Parameters.Add("@Price", SqlDbType.Int).Value = product.price;
                 sqlCommand.Prepare();
 
                 sqlCommand.ExecuteNonQuery();
@@ -66,12 +69,13 @@ namespace DatabaseSqlServerHandler
             try
             {
                 string query = "UPDATE DemoTable SET ProductQuantity=@ProductQuantity, Price=@Price WHERE ProductName=@ProductName";
+                Product product = JsonConvert.DeserializeObject<Product>(message.payload);
 
                 var sqlCommand = new SqlCommand(query, connection);
 
-                sqlCommand.Parameters.Add(new SqlParameter("@ProductName", SqlDbType.VarChar, 255)).Value = message.productName;
-                sqlCommand.Parameters.Add("@ProductQuantity", SqlDbType.Int).Value = message.quantity;
-                sqlCommand.Parameters.Add("@Price", SqlDbType.Int).Value = message.price;
+                sqlCommand.Parameters.Add(new SqlParameter("@ProductName", SqlDbType.VarChar, 255)).Value = product.name;
+                sqlCommand.Parameters.Add("@ProductQuantity", SqlDbType.Int).Value = product.quantity;
+                sqlCommand.Parameters.Add("@Price", SqlDbType.Int).Value = product.price;
 
                 sqlCommand.Prepare();
 
@@ -85,10 +89,11 @@ namespace DatabaseSqlServerHandler
             try
             {
                 string query = "DELETE FROM DemoTable WHERE ProductName=@ProductName";
+                Product product = JsonConvert.DeserializeObject<Product>(message.payload);
 
                 var sqlCommand = new SqlCommand(query, connection);
 
-                sqlCommand.Parameters.Add(new SqlParameter("@ProductName", SqlDbType.VarChar, 255)).Value = message.productName;
+                sqlCommand.Parameters.Add(new SqlParameter("@ProductName", SqlDbType.VarChar, 255)).Value = product.name;
                 sqlCommand.Prepare();
 
                 sqlCommand.ExecuteNonQuery();
@@ -117,7 +122,6 @@ namespace DatabaseSqlServerHandler
                 dataReader.Close();
             }
             catch (Exception ex) { Console.WriteLine(ex.Message); }
-            //Console.WriteLine($"[debug] timestamp: [{DateTime.Now.ToFileTimeUtc()}] dataFromDB");
 
             return output;
 
