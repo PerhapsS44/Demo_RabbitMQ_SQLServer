@@ -43,10 +43,25 @@ namespace DBServer
         static void Main()
         {
             //sqlConnectionHandler = new DB_SQLHandler();
+
+            //ConfigurationParser configData = new ConfigurationParser("config.json");
+            ConfigurationParser configData = JsonConvert.DeserializeObject<ConfigurationParser>(File.ReadAllText($"{Directory.GetCurrentDirectory()}\\..\\..\\..\\config.json"));
+
+            if (configData.DatabaseType == "SQL_Server"){
+                sqlConnectionHandler = new DB_SQLHandler();
+            } else if (configData.DatabaseType == "Text_File")
+            {
+                sqlConnectionHandler = new DB_FileHandler();
+            }
             sqlConnectionHandler = new DB_FileHandler();
             sqlConnectionHandler.DBConnect();
-            channelClientToServer = new RabbitMQHandler("Queue1", "MyExchange1", "RabbitMQ_CTB");
-            channelServerToClient = new RabbitMQHandler("Queue2", "MyExchange2", "RabbitMQ_BTC");
+            channelClientToServer = new RabbitMQHandler(configData.RabbitMQClientServerQueueName,
+                                                        configData.RabbitMQClientServerQueueExchange,
+                                                        configData.RabbitMQClientServerQueueKey);
+
+            channelServerToClient = new RabbitMQHandler(configData.RabbitMQServerClientQueueName,
+                                                        configData.RabbitMQServerClientQueueExchange,
+                                                        configData.RabbitMQServerClientQueueKey);
             while (true)
             {
                 DelegateCallbackRecv callback = new DelegateCallbackRecv(CallDatabase);

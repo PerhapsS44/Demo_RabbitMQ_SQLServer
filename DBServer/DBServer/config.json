@@ -1,0 +1,26 @@
+{
+  "exclude": [
+    "**/bin",
+    "**/bower_components",
+    "**/jspm_packages",
+    "**/node_modules",
+    "**/obj",
+    "**/platforms"
+  ],
+
+  "databaseType": "SQL_Server", // SQL_Server, Text_File
+  "databaseArgs": "Data Source=(LocalDB)\\MSSQLLocalDB;Initial Catalog=Demo;Trusted_Connection=True;", // Data Source=(LocalDB)\\MSSQLLocalDB;Initial Catalog=Demo;Trusted_Connection=True;, database.txt
+
+  "rabbitMQHostName": "localhost",
+  "rabbitMQUserName": "demo_app",
+  "rabbitMQPassword": "greatpass!",
+
+  "rabbitMQClientServerQueueName": "Queue1",
+  "rabbitMQClientServerQueueExchange": "Exchange1",
+  "rabbitMQClientServerQueueKey": "RabbitMQ_CTB",
+
+  "rabbitMQServerClientQueueName": "Queue2",
+  "rabbitMQServerClientQueueExchange": "Exchange2",
+  "rabbitMQServerClientQueueKey": "RabbitMQ_BTC"
+
+}
