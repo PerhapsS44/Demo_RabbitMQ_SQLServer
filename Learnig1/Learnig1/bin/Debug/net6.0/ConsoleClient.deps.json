@@ -10,9 +10,9 @@
         "dependencies": {
           "Newtonsoft.Json": "13.0.1",
           "RabbitMQ.Client": "6.2.4",
+          "Core": "1.0.0.0",
           "Logger": "1.0.0.0",
           "LoggerInterface": "1.0.0.0",
-          "MessageClass": "1.0.0.0",
           "RabbitMQHandlerClass": "1.0.0.0"
         },
         "runtime": {
@@ -41,6 +41,14 @@
       },
       "System.Memory/4.5.4": {},
       "System.Threading.Channels/4.7.1": {},
+      "Core/1.0.0.0": {
+        "runtime": {
+          "Core.dll": {
+            "assemblyVersion": "1.0.0.0",
+            "fileVersion": "1.0.0.0"
+          }
+        }
+      },
       "Logger/1.0.0.0": {
         "runtime": {
           "Logger.dll": {
@@ -52,14 +60,6 @@
       "LoggerInterface/1.0.0.0": {
         "runtime": {
           "LoggerInterface.dll": {
-            "assemblyVersion": "1.0.0.0",
-            "fileVersion": "1.0.0.0"
-          }
-        }
-      },
-      "MessageClass/1.0.0.0": {
-        "runtime": {
-          "MessageClass.dll": {
             "assemblyVersion": "1.0.0.0",
             "fileVersion": "1.0.0.0"
           }
@@ -109,17 +109,17 @@
       "path": "system.threading.channels/4.7.1",
       "hashPath": "system.threading.channels.4.7.1.nupkg.sha512"
     },
+    "Core/1.0.0.0": {
+      "type": "reference",
+      "serviceable": false,
+      "sha512": ""
+    },
     "Logger/1.0.0.0": {
       "type": "reference",
       "serviceable": false,
       "sha512": ""
     },
     "LoggerInterface/1.0.0.0": {
-      "type": "reference",
-      "serviceable": false,
-      "sha512": ""
-    },
-    "MessageClass/1.0.0.0": {
       "type": "reference",
       "serviceable": false,
       "sha512": ""

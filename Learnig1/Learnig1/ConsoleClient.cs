@@ -1,6 +1,6 @@
 ﻿using Newtonsoft.Json;
 using System;
-using MessageClass;
+using Core;
 using RabbitMQHandlerClass;
 using Logger;
 using LoggerTemplate;

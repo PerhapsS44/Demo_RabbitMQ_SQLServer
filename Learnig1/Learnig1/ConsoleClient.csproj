@@ -13,14 +13,14 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Reference Include="Core">
+      <HintPath>..\..\DBServer\Core\bin\Debug\net6.0\Core.dll</HintPath>
+    </Reference>
     <Reference Include="Logger">
       <HintPath>..\..\Logger\Logger\bin\Debug\net6.0\Logger.dll</HintPath>
     </Reference>
     <Reference Include="LoggerInterface">
       <HintPath>..\..\LoggerInterface\LoggerInterface\bin\Debug\net6.0\LoggerInterface.dll</HintPath>
-    </Reference>
-    <Reference Include="MessageClass">
-      <HintPath>..\..\MessageClass\MessageClass\bin\Debug\net6.0\MessageClass.dll</HintPath>
     </Reference>
     <Reference Include="RabbitMQHandlerClass">
       <HintPath>..\..\RabbitMQHandler\RabbitMQHandler\bin\Debug\net6.0\RabbitMQHandlerClass.dll</HintPath>
