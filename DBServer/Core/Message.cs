@@ -5,10 +5,21 @@ namespace Core
     {
         public enum MessageTypes
         {
+            ACK,
+            ERR,
+
             AddProduct,
             RemoveProduct,
             ModifyProduct,
-            ShowList
+            ShowList,
+
+            Register,
+            Login,
+            Logout,
+
+            AddToBasket,
+            RemoveFromBasket,
+            Checkout
         }
         public MessageTypes type { get; set; }
 
@@ -31,13 +42,27 @@ namespace Core
             switch (str)
             {
                 case "AddProduct":
-                    return Message.MessageTypes.AddProduct;
+                    return MessageTypes.AddProduct;
                 case "RemoveProduct":
-                    return Message.MessageTypes.RemoveProduct;
+                    return MessageTypes.RemoveProduct;
                 case "ModifyProduct":
-                    return Message.MessageTypes.ModifyProduct;
+                    return MessageTypes.ModifyProduct;
                 case "ShowList":
-                    return Message.MessageTypes.ShowList;
+                    return MessageTypes.ShowList;
+
+                case "Register":
+                    return MessageTypes.Register;
+                case "Login":
+                    return MessageTypes.Login;
+                case "Logout":
+                    return MessageTypes.Logout;
+
+                case "AddToCart":
+                    return MessageTypes.AddToBasket;
+                case "RemoveFromCart":
+                    return MessageTypes.RemoveFromBasket;
+                case "Checkout":
+                    return MessageTypes.Checkout;
                 default: return null;
             }
         }

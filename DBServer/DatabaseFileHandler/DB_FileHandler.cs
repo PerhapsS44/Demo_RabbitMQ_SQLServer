@@ -142,6 +142,36 @@ namespace DatabaseFileHandler
             CloseFile();
             return Task.FromResult(output);
         }
+
+        public void Register(Message message)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<Message> LoginAsync(Message message)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void Logout()
+        {
+            throw new NotImplementedException();
+        }
+
+        public void AddToBasket(Message message)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void RemoveFromBasket(Message message)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<Message> CheckoutAsync()
+        {
+            throw new NotImplementedException();
+        }
     }
 
     internal class FileDBFormat

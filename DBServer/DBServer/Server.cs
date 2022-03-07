@@ -21,6 +21,7 @@ namespace DBServer
             if (message == null) { return; }
             else
             {
+                Message token;
                 //Console.WriteLine($"[debug] timestamp: [{DateTime.Now.ToFileTimeUtc()}] callToDB");
                 switch (message.type)
                 {
@@ -37,6 +38,45 @@ namespace DBServer
                         string toSend = await sqlConnectionHandler.ShowSomethingAsync();
                         channelServerToClient.Send(toSend);
                         break;
+
+                    case Message.MessageTypes.Register:
+                        sqlConnectionHandler.Register(message);
+                        break;
+                    case Message.MessageTypes.Login:
+                        token = await sqlConnectionHandler.LoginAsync(message);
+                        if (token.type != Message.MessageTypes.ACK)
+                        {
+                            // invalid creditentials
+                            channelServerToClient.Send("Invalid creditentials!");
+                        }
+                        else
+                        {
+                            channelServerToClient.Send("Login successful!");
+                        }
+                        break;
+                    case Message.MessageTypes.Logout:
+                        sqlConnectionHandler.Logout();
+                        break;
+
+                    case Message.MessageTypes.AddToBasket:
+                        sqlConnectionHandler.AddToBasket(message);
+                        break;
+                    case Message.MessageTypes.RemoveFromBasket:
+                        sqlConnectionHandler.RemoveFromBasket(message);
+                        break;
+                    case Message.MessageTypes.Checkout:
+                        token = await sqlConnectionHandler.CheckoutAsync();
+                        if (token.type != Message.MessageTypes.ACK)
+                        {
+                            // error at checkout
+                            channelServerToClient.Send("Error!");
+                        }
+                        else
+                        {
+                            // update the database
+                            channelServerToClient.Send("Checkout successful!");
+                        }
+                        break;
                     default:
                         break;
                 }
@@ -47,9 +87,11 @@ namespace DBServer
             string configFilePath = $"{Directory.GetCurrentDirectory()}\\..\\..\\..\\config.json";
             ConfigurationParser configData = JsonConvert.DeserializeObject<ConfigurationParser>(File.ReadAllText(configFilePath));
 
-            if (configData.DatabaseType == "SQL_Server"){
+            if (configData.DatabaseType == "SQL_Server")
+            {
                 sqlConnectionHandler = new DB_SQLHandler();
-            } else if (configData.DatabaseType == "Text_File")
+            }
+            else if (configData.DatabaseType == "Text_File")
             {
                 sqlConnectionHandler = new DB_FileHandler();
             }

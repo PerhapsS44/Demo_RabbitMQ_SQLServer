@@ -14,6 +14,14 @@ namespace Core
         public void ModifySomething(Message message);
         public void RemoveSomething(Message message);
         public Task<string> ShowSomethingAsync();
+
+        public void Register(Message message);
+        public Task<Message> LoginAsync(Message message);
+        public void Logout();
+
+        public void AddToBasket(Message message);
+        public void RemoveFromBasket(Message message);
+        public Task<Message> CheckoutAsync();
     }
 }
 

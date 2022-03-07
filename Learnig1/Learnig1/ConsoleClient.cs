@@ -50,6 +50,54 @@ namespace Learning1
             }
         }
 
+        static Message? ConstructMessage(string[] inputData)
+        {
+            Message.MessageTypes? messageType = Message.GetMsgTypes(inputData[0]);
+            Message message = null;
+            Product product;
+            Customer customer;
+            if (messageType == null)
+            {
+                return null;
+            }
+
+            switch (messageType)
+            {
+                case Message.MessageTypes.AddProduct:
+                case Message.MessageTypes.ModifyProduct:
+                    if (inputData.Length != 4)
+                    {
+                        return null;
+                    }
+                    product = new Product(inputData[1], Convert.ToInt32(inputData[2]), Convert.ToDecimal(inputData[3]));
+                    message = new Message((Message.MessageTypes)messageType,
+                                          JsonConvert.SerializeObject(product));
+                    break;
+                case Message.MessageTypes.RemoveProduct:
+                    product = new Product(inputData[1], 0, 0);
+                    message = new Message((Message.MessageTypes)messageType,
+                                          JsonConvert.SerializeObject(product));
+                    break;
+                case Message.MessageTypes.ShowList:
+                case Message.MessageTypes.Logout:
+                    message = new Message((Message.MessageTypes)messageType, "");
+                    break;
+
+                case Message.MessageTypes.Register:
+                case Message.MessageTypes.Login:
+                    if (inputData.Length != 3)
+                    {
+                        return null;
+                    }
+                    customer = new Customer(inputData[1], inputData[2]);
+                    message = new Message((Message.MessageTypes)messageType,
+                                          JsonConvert.SerializeObject(customer));
+                    break;
+                default: break;
+            }
+            return message;
+        }
+
         static Task ShowMessage(string msg)
         {
             Console.WriteLine(msg);
@@ -73,22 +121,13 @@ namespace Learning1
             while (true)
             {
                 consoleInput = Console.ReadLine().Split(' ');
-                Message.MessageTypes? msgType = Message.GetMsgTypes(consoleInput[0]);
-                if (msgType != null)
-                {
-                    // message is of the known types
-                    ProcessMessage((Message.MessageTypes)msgType, consoleInput);
-                }
-                else if (consoleInput[0].Equals("Exit"))
-                {
-                    return;
-                }
-                else
+                Message? message = ConstructMessage(consoleInput);
+                if (message == null)
                 {
                     Console.WriteLine("Invalid operation!");
-                    logger.LogWarning("Invalid operation!");
-
+                    continue;
                 }
+                SendMessage(message);
             }
         }
     }
