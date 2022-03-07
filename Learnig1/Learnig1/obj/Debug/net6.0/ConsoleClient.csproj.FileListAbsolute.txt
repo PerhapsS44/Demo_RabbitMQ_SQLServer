@@ -5,9 +5,7 @@ C:\Users\Stefan.saraev\source\repos\Demo_RabbitMQ_SQLServer\Learnig1\Learnig1\bi
 C:\Users\Stefan.saraev\source\repos\Demo_RabbitMQ_SQLServer\Learnig1\Learnig1\bin\Debug\net6.0\ConsoleClient.pdb
 C:\Users\Stefan.saraev\source\repos\Demo_RabbitMQ_SQLServer\Learnig1\Learnig1\bin\Debug\net6.0\Newtonsoft.Json.dll
 C:\Users\Stefan.saraev\source\repos\Demo_RabbitMQ_SQLServer\Learnig1\Learnig1\bin\Debug\net6.0\RabbitMQ.Client.dll
-C:\Users\Stefan.saraev\source\repos\Demo_RabbitMQ_SQLServer\Learnig1\Learnig1\bin\Debug\net6.0\MessageClass.dll
 C:\Users\Stefan.saraev\source\repos\Demo_RabbitMQ_SQLServer\Learnig1\Learnig1\bin\Debug\net6.0\RabbitMQHandlerClass.dll
-C:\Users\Stefan.saraev\source\repos\Demo_RabbitMQ_SQLServer\Learnig1\Learnig1\bin\Debug\net6.0\MessageClass.pdb
 C:\Users\Stefan.saraev\source\repos\Demo_RabbitMQ_SQLServer\Learnig1\Learnig1\bin\Debug\net6.0\RabbitMQHandlerClass.pdb
 C:\Users\Stefan.saraev\source\repos\Demo_RabbitMQ_SQLServer\Learnig1\Learnig1\obj\Debug\net6.0\ConsoleClient.csproj.AssemblyReference.cache
 C:\Users\Stefan.saraev\source\repos\Demo_RabbitMQ_SQLServer\Learnig1\Learnig1\obj\Debug\net6.0\ConsoleClient.GeneratedMSBuildEditorConfig.editorconfig
@@ -24,3 +22,5 @@ C:\Users\Stefan.saraev\source\repos\Demo_RabbitMQ_SQLServer\Learnig1\Learnig1\bi
 C:\Users\Stefan.saraev\source\repos\Demo_RabbitMQ_SQLServer\Learnig1\Learnig1\bin\Debug\net6.0\LoggerInterface.dll
 C:\Users\Stefan.saraev\source\repos\Demo_RabbitMQ_SQLServer\Learnig1\Learnig1\bin\Debug\net6.0\Logger.pdb
 C:\Users\Stefan.saraev\source\repos\Demo_RabbitMQ_SQLServer\Learnig1\Learnig1\bin\Debug\net6.0\LoggerInterface.pdb
+C:\Users\Stefan.saraev\source\repos\Demo_RabbitMQ_SQLServer\Learnig1\Learnig1\bin\Debug\net6.0\Core.dll
+C:\Users\Stefan.saraev\source\repos\Demo_RabbitMQ_SQLServer\Learnig1\Learnig1\bin\Debug\net6.0\Core.pdb

@@ -8,10 +8,11 @@
     ".NETCoreApp,Version=v6.0": {
       "DBServer/1.0.0": {
         "dependencies": {
+          "Core": "1.0.0",
+          "DatabaseFileHandler": "1.0.0",
+          "DatabaseSqlServerHandler": "1.0.0",
           "Newtonsoft.Json": "13.0.1",
           "RabbitMQ.Client": "6.2.4",
-          "System.Data.SqlClient": "4.8.3",
-          "MessageClass": "1.0.0.0",
           "RabbitMQHandlerClass": "1.0.0.0"
         },
         "runtime": {
@@ -115,12 +116,29 @@
       },
       "System.Security.Principal.Windows/4.7.0": {},
       "System.Threading.Channels/4.7.1": {},
-      "MessageClass/1.0.0.0": {
+      "Core/1.0.0": {
+        "dependencies": {
+          "Newtonsoft.Json": "13.0.1"
+        },
         "runtime": {
-          "MessageClass.dll": {
-            "assemblyVersion": "1.0.0.0",
-            "fileVersion": "1.0.0.0"
-          }
+          "Core.dll": {}
+        }
+      },
+      "DatabaseFileHandler/1.0.0": {
+        "dependencies": {
+          "Core": "1.0.0"
+        },
+        "runtime": {
+          "DatabaseFileHandler.dll": {}
+        }
+      },
+      "DatabaseSqlServerHandler/1.0.0": {
+        "dependencies": {
+          "Core": "1.0.0",
+          "System.Data.SqlClient": "4.8.3"
+        },
+        "runtime": {
+          "DatabaseSqlServerHandler.dll": {}
         }
       },
       "RabbitMQHandlerClass/1.0.0.0": {
@@ -230,8 +248,18 @@
       "path": "system.threading.channels/4.7.1",
       "hashPath": "system.threading.channels.4.7.1.nupkg.sha512"
     },
-    "MessageClass/1.0.0.0": {
-      "type": "reference",
+    "Core/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "DatabaseFileHandler/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "DatabaseSqlServerHandler/1.0.0": {
+      "type": "project",
       "serviceable": false,
       "sha512": ""
     },

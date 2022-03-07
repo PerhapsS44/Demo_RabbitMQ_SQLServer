@@ -170,6 +170,46 @@
         "runtime": {
           "lib/netcoreapp3.0/System.Threading.Channels.dll": {}
         }
+      },
+      "Core/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v6.0",
+        "dependencies": {
+          "Newtonsoft.Json": "13.0.1"
+        },
+        "compile": {
+          "bin/placeholder/Core.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/Core.dll": {}
+        }
+      },
+      "DatabaseFileHandler/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v6.0",
+        "dependencies": {
+          "Core": "1.0.0"
+        },
+        "compile": {
+          "bin/placeholder/DatabaseFileHandler.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/DatabaseFileHandler.dll": {}
+        }
+      },
+      "DatabaseSqlServerHandler/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v6.0",
+        "dependencies": {
+          "Core": "1.0.0",
+          "System.Data.SqlClient": "4.8.3"
+        },
+        "compile": {
+          "bin/placeholder/DatabaseSqlServerHandler.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/DatabaseSqlServerHandler.dll": {}
+        }
       }
     }
   },
@@ -576,13 +616,30 @@
         "useSharedDesignerContext.txt",
         "version.txt"
       ]
+    },
+    "Core/1.0.0": {
+      "type": "project",
+      "path": "../Core/Core.csproj",
+      "msbuildProject": "../Core/Core.csproj"
+    },
+    "DatabaseFileHandler/1.0.0": {
+      "type": "project",
+      "path": "../DatabaseFileHandler/DatabaseFileHandler.csproj",
+      "msbuildProject": "../DatabaseFileHandler/DatabaseFileHandler.csproj"
+    },
+    "DatabaseSqlServerHandler/1.0.0": {
+      "type": "project",
+      "path": "../DatabaseSqlServerHandler/DatabaseSqlServerHandler.csproj",
+      "msbuildProject": "../DatabaseSqlServerHandler/DatabaseSqlServerHandler.csproj"
     }
   },
   "projectFileDependencyGroups": {
     "net6.0": [
+      "Core >= 1.0.0",
+      "DatabaseFileHandler >= 1.0.0",
+      "DatabaseSqlServerHandler >= 1.0.0",
       "Newtonsoft.Json >= 13.0.1",
-      "RabbitMQ.Client >= 6.2.4",
-      "System.Data.SqlClient >= 4.8.3"
+      "RabbitMQ.Client >= 6.2.4"
     ]
   },
   "packageFolders": {
@@ -591,9 +648,9 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Stefan.saraev\\source\\repos\\Demo_RabbitMQ_SQLServer\\DBServer\\DBServer\\DBServer.csproj",
-      "projectName": "DBServer",
-      "projectPath": "C:\\Users\\Stefan.saraev\\source\\repos\\Demo_RabbitMQ_SQLServer\\DBServer\\DBServer\\DBServer.csproj",
+      "projectUniqueName": "C:\\Users\\Stefan.saraev\\source\\repos\\Demo_RabbitMQ_SQLServer\\DBServer\\DBServer\\Server.csproj",
+      "projectName": "Server",
+      "projectPath": "C:\\Users\\Stefan.saraev\\source\\repos\\Demo_RabbitMQ_SQLServer\\DBServer\\DBServer\\Server.csproj",
       "packagesPath": "C:\\Users\\Stefan.saraev\\.nuget\\packages\\",
       "outputPath": "C:\\Users\\Stefan.saraev\\source\\repos\\Demo_RabbitMQ_SQLServer\\DBServer\\DBServer\\obj\\",
       "projectStyle": "PackageReference",
@@ -611,7 +668,17 @@
       "frameworks": {
         "net6.0": {
           "targetAlias": "net6.0",
-          "projectReferences": {}
+          "projectReferences": {
+            "C:\\Users\\Stefan.saraev\\source\\repos\\Demo_RabbitMQ_SQLServer\\DBServer\\Core\\Core.csproj": {
+              "projectPath": "C:\\Users\\Stefan.saraev\\source\\repos\\Demo_RabbitMQ_SQLServer\\DBServer\\Core\\Core.csproj"
+            },
+            "C:\\Users\\Stefan.saraev\\source\\repos\\Demo_RabbitMQ_SQLServer\\DBServer\\DatabaseFileHandler\\DatabaseFileHandler.csproj": {
+              "projectPath": "C:\\Users\\Stefan.saraev\\source\\repos\\Demo_RabbitMQ_SQLServer\\DBServer\\DatabaseFileHandler\\DatabaseFileHandler.csproj"
+            },
+            "C:\\Users\\Stefan.saraev\\source\\repos\\Demo_RabbitMQ_SQLServer\\DBServer\\DatabaseSqlServerHandler\\DatabaseSqlServerHandler.csproj": {
+              "projectPath": "C:\\Users\\Stefan.saraev\\source\\repos\\Demo_RabbitMQ_SQLServer\\DBServer\\DatabaseSqlServerHandler\\DatabaseSqlServerHandler.csproj"
+            }
+          }
         }
       },
       "warningProperties": {
@@ -631,10 +698,6 @@
           "RabbitMQ.Client": {
             "target": "Package",
             "version": "[6.2.4, )"
-          },
-          "System.Data.SqlClient": {
-            "target": "Package",
-            "version": "[4.8.3, )"
           }
         },
         "imports": [
