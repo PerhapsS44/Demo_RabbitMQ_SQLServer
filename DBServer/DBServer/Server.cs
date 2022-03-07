@@ -55,27 +55,27 @@ namespace DBServer
                         }
                         break;
                     case Message.MessageTypes.Logout:
-                        sqlConnectionHandler.Logout();
+                        //sqlConnectionHandler.Logout();
                         break;
 
                     case Message.MessageTypes.AddToBasket:
-                        sqlConnectionHandler.AddToBasket(message);
+                        //sqlConnectionHandler.AddToBasket(message);
                         break;
                     case Message.MessageTypes.RemoveFromBasket:
-                        sqlConnectionHandler.RemoveFromBasket(message);
+                        //sqlConnectionHandler.RemoveFromBasket(message);
                         break;
                     case Message.MessageTypes.Checkout:
-                        token = await sqlConnectionHandler.CheckoutAsync();
-                        if (token.type != Message.MessageTypes.ACK)
-                        {
-                            // error at checkout
-                            channelServerToClient.Send("Error!");
-                        }
-                        else
-                        {
-                            // update the database
-                            channelServerToClient.Send("Checkout successful!");
-                        }
+                        //token = await sqlConnectionHandler.CheckoutAsync();
+                        //if (token.type != Message.MessageTypes.ACK)
+                        //{
+                        //    // error at checkout
+                        //    channelServerToClient.Send("Error!");
+                        //}
+                        //else
+                        //{
+                        //    // update the database
+                        //    channelServerToClient.Send("Checkout successful!");
+                        //}
                         break;
                     default:
                         break;

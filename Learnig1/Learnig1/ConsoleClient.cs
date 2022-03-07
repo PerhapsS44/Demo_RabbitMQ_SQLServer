@@ -14,6 +14,7 @@ namespace Learning1
         static LoggerInterface logger;
         public static void SendMessage(Message msg)
         {
+            Console.WriteLine($"[debug] {msg}");
             channelClientToServer.Send(JsonConvert.SerializeObject(msg));
         }
         // constructing the message from the input string and sending it
@@ -58,6 +59,10 @@ namespace Learning1
             Customer customer;
             if (messageType == null)
             {
+                if (inputData[0] == "Exit")
+                {
+                    return new Message(Message.MessageTypes.ERR);
+                }
                 return null;
             }
 
@@ -65,6 +70,7 @@ namespace Learning1
             {
                 case Message.MessageTypes.AddProduct:
                 case Message.MessageTypes.ModifyProduct:
+                case Message.MessageTypes.AddToBasket:
                     if (inputData.Length != 4)
                     {
                         return null;
@@ -74,12 +80,18 @@ namespace Learning1
                                           JsonConvert.SerializeObject(product));
                     break;
                 case Message.MessageTypes.RemoveProduct:
-                    product = new Product(inputData[1], 0, 0);
+                case Message.MessageTypes.RemoveFromBasket:
+                    if (inputData.Length != 2)
+                    {
+                        return null;
+                    }
+
                     message = new Message((Message.MessageTypes)messageType,
-                                          JsonConvert.SerializeObject(product));
+                                          inputData[1]);
                     break;
                 case Message.MessageTypes.ShowList:
                 case Message.MessageTypes.Logout:
+                case Message.MessageTypes.Checkout:
                     message = new Message((Message.MessageTypes)messageType, "");
                     break;
 
@@ -126,6 +138,11 @@ namespace Learning1
                 {
                     Console.WriteLine("Invalid operation!");
                     continue;
+                }
+                if (message.type == Message.MessageTypes.ERR)
+                {
+                    SendMessage(message);
+                    break;
                 }
                 SendMessage(message);
             }

@@ -17,11 +17,8 @@ namespace Core
 
         public void Register(Message message);
         public Task<Message> LoginAsync(Message message);
-        public void Logout();
 
-        public void AddToBasket(Message message);
-        public void RemoveFromBasket(Message message);
-        public Task<Message> CheckoutAsync();
+        public Task<Message> CheckQuantityAsync(Product product);
     }
 }
 

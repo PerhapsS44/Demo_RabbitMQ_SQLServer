@@ -153,22 +153,7 @@ namespace DatabaseFileHandler
             throw new NotImplementedException();
         }
 
-        public void Logout()
-        {
-            throw new NotImplementedException();
-        }
-
-        public void AddToBasket(Message message)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void RemoveFromBasket(Message message)
-        {
-            throw new NotImplementedException();
-        }
-
-        public Task<Message> CheckoutAsync()
+        public Task<Message> CheckQuantityAsync(Product product)
         {
             throw new NotImplementedException();
         }

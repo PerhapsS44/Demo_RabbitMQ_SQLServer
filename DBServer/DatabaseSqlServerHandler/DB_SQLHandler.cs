@@ -51,7 +51,7 @@ namespace DatabaseSqlServerHandler
             {
                 string query = "INSERT INTO DemoTable(ProductName, ProductQuantity, Price) VALUES(@ProductName, @ProductQuantity, @Price)";
                 Product product = JsonConvert.DeserializeObject<Product>(message.payload);
-                
+
                 var sqlCommand = new SqlCommand(query, connection);
 
                 sqlCommand.Parameters.Add(new SqlParameter("@ProductName", SqlDbType.VarChar, 255)).Value = product.name;
@@ -129,32 +129,83 @@ namespace DatabaseSqlServerHandler
 
         public void Register(Message message)
         {
-            throw new NotImplementedException();
+            try
+            {
+                string query = "INSERT INTO Customers(username, password) VALUES(@username, @password)";
+                Customer customer = JsonConvert.DeserializeObject<Customer>(message.payload);
+
+                var sqlCommand = new SqlCommand(query, connection);
+
+                sqlCommand.Parameters.Add(new SqlParameter("@username", SqlDbType.VarChar, 255)).Value = customer.username;
+                sqlCommand.Parameters.Add("@password", SqlDbType.Int).Value = customer.password;
+                sqlCommand.Prepare();
+
+                sqlCommand.ExecuteNonQuery();
+            }
+            catch (Exception ex) { Console.WriteLine(ex.Message); }
         }
 
-        public Task<Message> LoginAsync(Message message)
+        public async Task<Message?> LoginAsync(Message message)
         {
-            throw new NotImplementedException();
+            Message response = null;
+            try
+            {
+                string query = "SELECT COUNT(1) FROM Customers WHERE VALUES(username = @username AND password = @password)";
+                Customer customer = JsonConvert.DeserializeObject<Customer>(message.payload);
+
+                var sqlCommand = new SqlCommand(query, connection);
+
+                sqlCommand.Parameters.Add(new SqlParameter("@username", SqlDbType.VarChar, 255)).Value = customer.username;
+                sqlCommand.Parameters.Add("@password", SqlDbType.Int).Value = customer.password;
+                sqlCommand.Prepare();
+
+                var dataReader = await sqlCommand.ExecuteReaderAsync();
+                if (!dataReader.Read())
+                {
+                    // nu exista perechea username - password
+                    response = new Message(Message.MessageTypes.ERR);
+                }
+                else
+                {
+                    // intorc ack cand s-a logat userul meu
+                    response = new Message(Message.MessageTypes.ACK);
+                }
+
+                dataReader.Close();
+            }
+            catch (Exception ex) { Console.WriteLine(ex.Message); }
+            return response;
         }
 
-        public void Logout()
+        public async Task<Message> CheckQuantityAsync(Product product)
         {
-            throw new NotImplementedException();
-        }
+            try
+            {
+                string query = "SELECT TOP 100 * FROM DemoTable WHERE (ProductName=@ProductName)";
 
-        public void AddToBasket(Message message)
-        {
-            throw new NotImplementedException();
-        }
+                var sqlCommand = new SqlCommand(query, connection);
+                sqlCommand.Parameters.Add(new SqlParameter("@ProductName", SqlDbType.VarChar, 255)).Value = product.name;
 
-        public void RemoveFromBasket(Message message)
-        {
-            throw new NotImplementedException();
-        }
+                sqlCommand.Prepare();
 
-        public Task<Message> CheckoutAsync()
-        {
-            throw new NotImplementedException();
+                var dataReader = await sqlCommand.ExecuteReaderAsync();
+                string output;
+                if (!dataReader.Read())
+                {
+                    return new Message(Message.MessageTypes.ERR);
+                }
+
+                if (product.quantity < Convert.ToInt32(dataReader.GetSqlValue(1)))
+                {
+                    return new Message(Message.MessageTypes.ERR);
+                }
+                product.quantity = Convert.ToInt32(dataReader.GetSqlValue(1));
+                product.price = Convert.ToDecimal(dataReader.GetSqlValue(2));
+
+                dataReader.Close();
+            }
+            catch (Exception ex) { Console.WriteLine(ex.Message); }
+            return new Message(Message.MessageTypes.ACK, JsonConvert.SerializeObject(product));
         }
     }
 }
