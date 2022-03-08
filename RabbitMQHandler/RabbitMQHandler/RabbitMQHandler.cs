@@ -21,7 +21,6 @@ namespace RabbitMQHandlerClass
             // use the message
             string message = Encoding.UTF8.GetString(body.ToArray());
 
-            Console.WriteLine($"[debug] timestamp: [{DateTime.Now.ToFileTimeUtc()}] {message}");
             delegateCallback(message);
 
             _channel.BasicAck(deliveryTag, false);
@@ -64,7 +63,6 @@ namespace RabbitMQHandlerClass
         }
         public void Send(string message)
         {
-            Console.WriteLine($"[debug] timestamp: [{DateTime.Now.ToFileTimeUtc()}] {message}");
             model.BasicPublish(exchangeName, routingKey, false,
                 basicProperties, Encoding.UTF8.GetBytes(message));
         }

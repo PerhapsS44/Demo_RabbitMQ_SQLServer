@@ -14,7 +14,6 @@ namespace Learning1
         static LoggerInterface logger;
         public static void SendMessage(Message msg)
         {
-            Console.WriteLine($"[debug] {msg}");
             channelClientToServer.Send(JsonConvert.SerializeObject(msg));
         }
         // constructing the message from the input string and sending it
@@ -63,6 +62,7 @@ namespace Learning1
                 {
                     return new Message(Message.MessageTypes.ERR);
                 }
+                Console.WriteLine("ceva nu e bine");
                 return null;
             }
 
@@ -70,12 +70,20 @@ namespace Learning1
             {
                 case Message.MessageTypes.AddProduct:
                 case Message.MessageTypes.ModifyProduct:
-                case Message.MessageTypes.AddToBasket:
                     if (inputData.Length != 4)
                     {
                         return null;
                     }
                     product = new Product(inputData[1], Convert.ToInt32(inputData[2]), Convert.ToDecimal(inputData[3]));
+                    message = new Message((Message.MessageTypes)messageType,
+                                          JsonConvert.SerializeObject(product));
+                    break;
+                case Message.MessageTypes.AddToBasket:
+                    if (inputData.Length != 3)
+                    {
+                        return null;
+                    }
+                    product = new Product(inputData[1], Convert.ToInt32(inputData[2]), 0);
                     message = new Message((Message.MessageTypes)messageType,
                                           JsonConvert.SerializeObject(product));
                     break;

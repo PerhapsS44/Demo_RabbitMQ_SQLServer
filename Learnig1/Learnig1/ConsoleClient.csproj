@@ -14,7 +14,7 @@
 
   <ItemGroup>
     <Reference Include="Core">
-      <HintPath>..\..\DBServer\Core\bin\Debug\net6.0\Core.dll</HintPath>
+      <HintPath>..\..\Server\Core\bin\Debug\net6.0\Core.dll</HintPath>
     </Reference>
     <Reference Include="Logger">
       <HintPath>..\..\Logger\Logger\bin\Debug\net6.0\Logger.dll</HintPath>
