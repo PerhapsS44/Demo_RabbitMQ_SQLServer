@@ -59,6 +59,7 @@ namespace Server
                         break;
                     case Message.MessageTypes.Logout:
                         loggedIn = false;
+                        basket.Empty();
                         break;
 
                     case Message.MessageTypes.AddToBasket:
